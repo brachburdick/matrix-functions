@@ -1,0 +1,17 @@
+body{
+    background:rgb(125, 151, 169);
+}
+
+.panel{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    grid-gap: 10px;
+}
+
+.diode{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background: yellow;
+    border: 3px solid red
+}

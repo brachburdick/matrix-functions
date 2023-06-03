@@ -8,7 +8,8 @@
     "lib": ["dom"],
     "jsx": "react-jsx",
     "strict":true,
+    "moduleResolution": "node",
   },
-  "files": ["src/index.tsx"],
+  "files": ["client/src/index.tsx"],
  
 }

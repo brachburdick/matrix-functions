@@ -1,0 +1,86 @@
+body{
+    background:rgb(125, 151, 169);
+}
+
+.panel{
+    columns: 1;
+    grid-template-columns: repeat(auto-fill, minmax(18%, 1fr));
+    margin-bottom: 10px;
+    grid-gap: 10px;
+    border: solid 3px black;
+    padding: 20px
+}
+
+.diode{
+    border-radius: 50%;
+    width: 100px;
+    height: 500px;
+    color: rgb(34, 255, 0);
+    border: solid 1px rgb(255, 111, 0);
+    padding:100px;
+    background: var(--my-color)
+}
+
+.fixture{
+    text-indent: 15px;
+}
+
+
+.slider-box{
+    width: 100%;
+    display: flex;
+    grid-template-rows: repeat(auto-fill, minmax(10%, 1fr));
+    padding-right: 50px;
+    justify-content: space-around;
+}
+
+.slider{
+    appearance: none;
+    width: 20%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    
+}
+#r-slider::-webkit-slider-thumb{
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #aa0404; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+#g-slider::-webkit-slider-thumb{
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #04aa07; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+#b-slider::-webkit-slider-thumb{
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #0420aa; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+#a-slider::-webkit-slider-thumb{
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #000000; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+#mover-slider::-webkit-slider-thumb{
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #ffffff; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}

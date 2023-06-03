@@ -2,10 +2,10 @@ import Group from './Group'
 // Define the parent class, Fixture
 export class Fixture {
     name: string;
-    groups: Group[];
+    // groups: Group[];
     constructor(name: string, groups: Group[] = []) {
       this.name = name;
-      this.groups = groups;
+    //   this.groups = groups;
     }
   
     // ... other shared methods or properties for fixtures

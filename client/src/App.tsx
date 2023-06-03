@@ -10,12 +10,13 @@ const PANEL_WIDTH = 600
 
 const App: React.FC = () => {
   // Read from the store
-  const fixtures = useStore((state) => state.fixtures);
+  //the function returns a flattened array of arrays of each group's fixtures vvv
+  const fixtures = useStore((state) => state.groups.map(group => group.fixtures).flat());
   const groups = useStore((state) => state.groups);
-
+  
   // Get the action functions
   const addFixture = useStore((state) => state.addFixture);
-  const removeFixture = useStore((state) => state.removeFixture);
+  //const removeFixture = useStore((state) => state.removeFixture);
   const addGroup = useStore((state) => state.addGroup);
   const removeGroup = useStore((state) => state.removeGroup);
   const expandGroup = useStore((state) => state.expandGroup)
@@ -25,10 +26,9 @@ const App: React.FC = () => {
     const groupName = `Group ${groups.length + 1}`;
     addGroup(new Group(groupName, []));
   };
-  const handleAddFixtureClick = () => {
+  const handleAddFixtureClick = (updatedGroup:Group) => {
     const fixtureName = `Fixture ${fixtures.length + 1}`;
-    
-    addFixture(new Fixture(fixtureName, []));
+    addFixture(updatedGroup, new Fixture(fixtureName, []));
   };
   const handleExpandGroupClick = (group : Group) =>{
     expandGroup(group)
@@ -42,7 +42,7 @@ for (let g of groups){
   for(let f of g.fixtures){
   summaryContent.push(<li key={f.name} className='fixture'> {f.name} </li>)
   }
-  summaryContent.push(<li className='fixture' onClick={handleAddFixtureClick}> *Add a Fixture* </li>)
+  summaryContent.push(<li className='fixture' onClick={() => handleAddFixtureClick(g)}> *Add a Fixture* </li>)
 }}
 summaryContent.push(<li className='group' onClick={handleAddGroupClick}> *Add a Group* </li>)
 

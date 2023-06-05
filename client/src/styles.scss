@@ -22,9 +22,13 @@ body{
 }
 
 .fixture{
-    text-indent: 15px;
+   
+    
 }
 
+.selected{
+    outline: 5px dotted green;;
+}
 
 .slider-box{
     width: 100%;

@@ -1,43 +1,81 @@
 import Group from './Group'
-// Define the parent class, Fixture
+// interface FixtureProps {
+//     name: string,
+//         id: number,
+//         libid: number,
+//         r: number,
+//         g: number,
+//         b: number,
+//         alpha: number,
+//         position: number[],
+//         rectWidth?: number,
+//         rectHeight?: number,
+//         transparency?:number
+// }
 export class Fixture {
-        name: string;
-        id: number;
-        libid: number;
-        r: number;
-        g: number;
-        b: number;
-        alpha: number;
-
-        constructor(name: string, id: number, libid: number, r: number, g: number, b: number, alpha: number) {
-          this.name = name;
-          this.id = id;
-          this.libid = libid;
-          this.r = r;
-          this.g = g;
-          this.b = b;
-          this.alpha = alpha;
-        }
-      }  
-
-  // Define the Pars class
-export class Par extends Fixture {
-    constructor(name: string, id: number, libid: number, r: number, g: number, b: number, alpha: number) {
-      super(name, id, libid, r, g, b, alpha); // Call parent constructor
+    constructor(
+        name: string,
+        id: number,
+        libid: number,
+        position: number[],
+        r: number,
+        g: number,
+        b: number,
+        alpha: number,
+        rectWidth?: number,
+        rectHeight?: number,
+        transparency?:number) {
+        this.name = name;
+        this.id = id;
+        this.libid = libid;
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.alpha = alpha;
+        this.position = position;
+        this.rectHeight = rectHeight;
+        this.rectWidth = rectWidth;
+        this.transparency = transparency;
     }
-    // ... other methods or properties for Pars
+    name: string;
+    id: number;
+    libid: number;
+    r: number;
+    g: number;
+    b: number;
+    alpha: number;
+    position: number[];
+    rectHeight?: number;
+    rectWidth?:number;
+    transparency?: number;
+    }  
+
+ 
+export class Par extends Fixture {
+    constructor(name: string, id: number, libid: number, r: number, g: number, b: number, alpha: number, position: number[], rectWidth: number, rectHeight: number, transparency: number) {
+      super(name, id, libid,position, r, g, b, alpha,rectWidth, rectHeight, transparency)
+    }
     }
   
-  // Define the Movers class
-  export class Mover extends Fixture {
-    // Add properties specific to Movers
-    rotation: number;
-    tilt: number;
-    // Call parent constructor
-      constructor(name: string, id: number, libid: number, r: number, g: number, b: number, alpha: number, rotation: number,tilt:number) {
-        super(name, id, libid, r, g, b, alpha);
+
+export class Mover extends Fixture {
+      constructor(name: string, 
+        id: number, 
+        libid: number, 
+        position: number[], 
+        r: number, 
+        g: number, 
+        b: number, 
+        alpha: number, 
+        rotation: number,
+        tilt:number, 
+        rectWidth?: number,
+        rectHeight?: number,
+        transparency?: number) {
+        super(name, id, libid, position,r, g, b, alpha,rectWidth,rectHeight, transparency);
         this.rotation = rotation;
         this.tilt = tilt;
     }
-    // ... other methods or properties for Movers
+    rotation: number;
+    tilt: number;
     }

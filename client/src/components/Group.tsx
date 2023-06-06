@@ -1,16 +1,16 @@
 // Group.tsx
 import React from 'react';
-import {Fixture} from './Fixture'
+import {Fixture, Mover} from './Fixture'
 export interface GroupProps {
 
     
 }
 class Group {
     name: string;
-    fixtures: Fixture[];
+    fixtures:Mover[];
     expanded: boolean;
     selected: boolean;
-    constructor(name: string, fixtures: Fixture[] = []) {
+    constructor(name: string, fixtures: Mover[] = []) {
       this.name = name;
       this.fixtures = fixtures;
       this.expanded = false;

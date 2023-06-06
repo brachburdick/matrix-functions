@@ -9,8 +9,8 @@ type FixtureState = {
   nextID:number;
   updateNextID: () => void;
   expandGroup: (group: Group) => void;
-  addFixture: (group:Group, fixture:Fixture) => void;
-  removeFixture: (group:Group, fixture: Fixture) => void;
+  addFixture: (group:Group, fixture:Mover) => void;
+  removeFixture: (group:Group, fixture: Mover) => void;
   addGroup: (group: Group) => void;
   removeGroup: (group: Group) => void;
   selectGroup: (group: Group) => void;
@@ -18,7 +18,6 @@ type FixtureState = {
 
 // Create a store
 export const useStore = create<FixtureState>((set) => ({
-    //   fixtures: [],
     groups: [],
     fixtureCount: 0,
     nextID: 1001,
@@ -28,7 +27,6 @@ export const useStore = create<FixtureState>((set) => ({
         groups: state.groups.map((group) =>
           group === groupToExpand ? { ...group, expanded: !group.expanded} : group
         )})),
-  
     addFixture: (updatedGroup, newFixture) =>
         set((state) => ({
         groups: state.groups.map((group) =>
@@ -36,7 +34,6 @@ export const useStore = create<FixtureState>((set) => ({
             ? { ...group, fixtures: [...group.fixtures, newFixture] }
             : group
         )})),
-
     removeFixture: (updatedGroup,unFixture) =>
 //look through each group until finding the one we're altering
 //once finding the fixutre we're removing, filter that fixture out of the group
@@ -45,13 +42,14 @@ export const useStore = create<FixtureState>((set) => ({
             group === updatedGroup 
             ? {...group, fixtures: group.fixtures.filter(fixture => fixture !== unFixture )}
             :group
-        )})),
-
+        )
+        })),
     addGroup: (group) => set((state) => ({ groups: [...state.groups, group] })),
     removeGroup: (updatedGroup) => 
         set((state) => ({ 
-        groups: state.groups.filter((g) => g !== updatedGroup) })),
-        //given a particular group, check all groups in state.
+        groups: state.groups.filter((g) => g !== updatedGroup) 
+    })),
+    //given a particular group, check all groups in state.
         //you're going to update the state.selected groups, AND
         //you're going to update the state.groups.group.selected property.
     selectGroup: (group) => set ((state) => {

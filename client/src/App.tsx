@@ -4,7 +4,9 @@ import './styles.scss'
 import Slider from './components/Slider'
 import Group, {GroupProps} from './components/Group';
 import {useStore} from './store/Store'
-import {Fixture} from './components/Fixture'
+import {Fixture, Mover} from './components/Fixture'
+import Stage from './components/stage'
+
 const PANEL_HEIGHT = 300
 const PANEL_WIDTH = 600
 
@@ -32,13 +34,13 @@ const App: React.FC = () => {
   };
   const handleAddFixtureClick = (updatedGroup:Group) => {
     const fixtureName = `Fixture ${fixtures.length + 1}`;
-    addFixture(updatedGroup, new Fixture(fixtureName,nextID,0o1,0,0,0,0));
+    addFixture(updatedGroup, new Mover(fixtureName,nextID,0o1,[PANEL_WIDTH/2,PANEL_HEIGHT/2],200,100,50,.85, 0,0));
     updateNextID();
   };
   const handleExpandGroupClick = (group : Group) =>{
     expandGroup(group)
   }
-  const handleRemoveFixtureClick = (group : Group, fixture:Fixture) =>{
+  const handleRemoveFixtureClick = (group : Group, fixture:Mover) =>{
     if(confirm(`Are you sure you want to delete ${fixture.name}?` )){
       removeFixture(group,fixture)
     }
@@ -49,7 +51,6 @@ const App: React.FC = () => {
     }
   }
   const handleSelectionClick = (group : Group) =>{
-   
     selectGroup(group)
   }
 
@@ -86,18 +87,24 @@ for (let g of groups){
   }
 //add group
 summaryContent.push(<ul className='group' onClick={handleAddGroupClick}> *Add a Group* </ul>)
+summaryContent.push(<ul className='group' onClick={()=>{groups.forEach((g)=>console.log(...g.fixtures));console.log('fixtures: ', fixtures)}}> CLICK ME </ul>)
 
 //----------------------------------------------------------------
 
 
     return (
       <div className = "panel">
-      <Panel height={PANEL_HEIGHT} width= {PANEL_WIDTH}>Stage</Panel>
+      <Panel height={PANEL_HEIGHT} width= {PANEL_WIDTH}>
+       
+        <Stage/>
+      </Panel>
       <Panel height={PANEL_HEIGHT} width= {PANEL_WIDTH}>
         Summary
         {summaryContent}
         </Panel>
-      <Panel height={PANEL_HEIGHT} width= {PANEL_WIDTH}>Functions</Panel>
+      <Panel height={PANEL_HEIGHT} width= {PANEL_WIDTH}>
+        
+        </Panel>
       </div>
     );
   };

@@ -34,8 +34,7 @@ const App: React.FC = () => {
   };
   const handleAddFixtureClick = (updatedGroup:Group) => {
     const fixtureName = `Fixture ${fixtures.length + 1}`;
-    addFixture(updatedGroup, new Mover(fixtureName,nextID,0o1,[PANEL_WIDTH/2,PANEL_HEIGHT/2],200,100,50,.85, 0,0));
-    updateNextID();
+    addFixture(updatedGroup);
   };
   const handleExpandGroupClick = (group : Group) =>{
     expandGroup(group)
@@ -73,6 +72,9 @@ for (let g of groups){
     //add fixture
     groupChildren.push(<ul className='fixture' onClick={() => handleAddFixtureClick(g)}> *Add a Fixture* </ul>)
   }
+
+  
+
 
   //create a group for each state.group, adding children
   summaryContent.push(

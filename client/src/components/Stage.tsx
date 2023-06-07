@@ -8,8 +8,8 @@ interface StageProps {
 
 const Stage : React.FC<StageProps> = () => {
   const canvasRef = useRef<HTMLDivElement | null>(null);
-  const RECT_WIDTH: number = 10
-  const RECT_HEIGHT: number = 40
+  const RECT_WIDTH: number = 15
+  const RECT_HEIGHT: number = 60
   let t:number = 0
   let p5Instance: p5 | null = null; 
   const fixtures = useStore((state) => state.groups.map(group => group.fixtures).flat());
@@ -30,7 +30,7 @@ const Stage : React.FC<StageProps> = () => {
       p.draw = () => {
         p.background(10, 10); // translucent background (creates trails)
        
-        console.log('drawing- props.sprites:', fixturesReference)
+        //console.log('drawing- props.sprites:', fixturesReference)
         for(let i: number = 0; i< fixtures.length; i++){
         
           //the following is the subroutine for creating a Sprite

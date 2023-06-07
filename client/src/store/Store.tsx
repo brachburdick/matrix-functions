@@ -7,9 +7,10 @@ type FixtureState = {
   groups: (Group & { expanded: boolean })[];
   fixtureCount: number;
   nextID:number;
+  stageDimensions:number[];
   updateNextID: () => void;
   expandGroup: (group: Group) => void;
-  addFixture: (group:Group, fixture:Mover) => void;
+  addFixture: (group:Group) => void;
   removeFixture: (group:Group, fixture: Mover) => void;
   addGroup: (group: Group) => void;
   removeGroup: (group: Group) => void;
@@ -21,19 +22,37 @@ export const useStore = create<FixtureState>((set) => ({
     groups: [],
     fixtureCount: 0,
     nextID: 1001,
+    stageDimensions: [600,300],
     updateNextID: ()=>set((state) => ({nextID: state.nextID + 1})),
     expandGroup: (groupToExpand) =>
         set((state) => ({
         groups: state.groups.map((group) =>
           group === groupToExpand ? { ...group, expanded: !group.expanded} : group
         )})),
-    addFixture: (updatedGroup, newFixture) =>
-        set((state) => ({
+    addFixture: (updatedGroup) =>
+
+        set((state) => {
+            //when a fixture is added to the group, each fixture's position will be updated
+            // the new fixture is also added to the group
+            let width = state.stageDimensions[0];
+            let height = state.stageDimensions[1]/2;
+            let preLength = updatedGroup.fixtures.length
+            let xPos;
+            let updatedFixtures:Mover[] = updatedGroup.fixtures.map((f,i)=>{
+                 xPos = (i+1)* width/(preLength + 2 )
+                return {...f, position:[xPos,height] }
+            })
+            const fixtureName = `Fixture ${state.fixtureCount + 1}`;
+            xPos = (preLength+1)*width/(preLength+2)
+            updatedFixtures.push(new Mover(fixtureName, state.nextID, 0o1, [xPos, height],30,120,100,.85,0,70))
+    return{
+        nextID: state.nextID +1,
+        fixtureCount: state.fixtureCount +1,
         groups: state.groups.map((group) =>
             group === updatedGroup
-            ? { ...group, fixtures: [...group.fixtures, newFixture] }
+            ? { ...group, fixtures: [...updatedFixtures] }
             : group
-        )})),
+        )}}),
     removeFixture: (updatedGroup,unFixture) =>
 //look through each group until finding the one we're altering
 //once finding the fixutre we're removing, filter that fixture out of the group

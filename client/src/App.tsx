@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Panel from './containers/Panel'
 import './styles.scss'
 import Slider from './components/Slider'
+import ControlPanel from './components/ControlPanel'
 import Group, {GroupProps} from './components/Group';
 import {useStore} from './store/Store'
 import {Fixture, Mover} from './components/Fixture'
@@ -105,7 +106,7 @@ summaryContent.push(<ul className='group' onClick={()=>{groups.forEach((g)=>cons
         {summaryContent}
         </Panel>
       <Panel height={PANEL_HEIGHT} width= {PANEL_WIDTH}>
-        
+        <ControlPanel />
         </Panel>
       </div>
     );

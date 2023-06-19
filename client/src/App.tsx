@@ -65,7 +65,7 @@ for (let g of groups){
     //if expanded, show the fixtures of that group
     for(let f of g.fixtures){
     groupChildren.push(
-        <ul key={f.name} className='fixture'>
+        <ul key={f.name} className='fixture '>
           {f.name} 
           <button onClick={() => handleRemoveFixtureClick(g,f)}> - </button> 
         </ul>
@@ -73,6 +73,7 @@ for (let g of groups){
     //add fixture
     groupChildren.push(<ul className='fixture' onClick={() => handleAddFixtureClick(g)}> *Add a Fixture* </ul>)
   }
+//ADD SELECTION FEATURE TO FIXTURES
 
   
 

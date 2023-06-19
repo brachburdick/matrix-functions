@@ -36,6 +36,7 @@ export class Fixture {
         this.rectHeight = rectHeight;
         this.rectWidth = rectWidth;
         this.transparency = transparency;
+        this.selected = false;
     }
     name: string;
     id: number;
@@ -48,6 +49,7 @@ export class Fixture {
     rectHeight?: number;
     rectWidth?:number;
     transparency?: number;
+    selected: boolean;
     }  
 
  
@@ -72,7 +74,7 @@ export class Mover extends Fixture {
         rectWidth?: number,
         rectHeight?: number,
         transparency?: number) {
-        super(name, id, libid, position,r, g, b, alpha,rectWidth,rectHeight, transparency);
+        super(name, id, libid, position,r, g, b, alpha,rectWidth,rectHeight, transparency,);
         this.rotation = rotation;
         this.tilt = tilt;
     }
